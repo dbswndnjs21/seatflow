@@ -253,6 +253,69 @@ body {
     font-size: 14px;
 }
 
+.result-panel {
+    width: min(720px, 100%);
+}
+
+.train-result-list {
+    display: grid;
+    gap: 10px;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.train-result-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    background: #fff;
+}
+
+.train-result-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.train-result-no {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f58aa;
+}
+
+.train-result-type {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.train-result-time {
+    font-weight: 700;
+    color: #111827;
+    font-size: 14px;
+}
+
+.train-result-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: #475569;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.seat-select-link {
+    margin-left: auto;
+    text-decoration: none;
+    background: #0f58aa;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 6px 10px;
+}
+
 @media (max-width: 1200px) {
     .search-panel {
         grid-template-columns: 1fr 70px 1fr;

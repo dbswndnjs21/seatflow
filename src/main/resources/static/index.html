@@ -62,6 +62,17 @@
     </div>
 </div>
 
+<div id="train-result-modal" class="station-modal" role="dialog" aria-modal="true" aria-labelledby="train-result-title" hidden>
+    <div class="station-modal-backdrop" data-train-close="true"></div>
+    <div class="station-modal-panel result-panel">
+        <div class="station-modal-header">
+            <h2 id="train-result-title">열차 조회 결과</h2>
+            <button id="train-result-close" class="station-modal-close" type="button" aria-label="닫기">✕</button>
+        </div>
+        <div id="train-result-list" class="train-result-list"></div>
+    </div>
+</div>
+
 <script src="/js/main.js"></script>
 </body>
 </html>

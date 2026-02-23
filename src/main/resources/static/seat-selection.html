@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>좌석 선택</title>
+    <link rel="stylesheet" href="/css/seat-selection.css" />
+</head>
+<body>
+<div class="wrap">
+    <header class="top">
+        <a href="/index.html" class="back">← 조회로 돌아가기</a>
+        <h1>좌석 선택</h1>
+    </header>
+
+    <section class="summary" id="summary"></section>
+
+    <section class="legend">
+        <span><i class="dot available"></i>선택 가능</span>
+        <span><i class="dot held"></i>홀드중</span>
+        <span><i class="dot reserved"></i>예약완료</span>
+    </section>
+
+    <section id="seat-container" class="seat-container"></section>
+</div>
+
+<script src="/js/seat-selection.js"></script>
+</body>
+</html>
