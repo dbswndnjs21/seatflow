@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코레일 메인</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<main class="hero-page">
+    <section class="search-wrap" aria-label="열차 조회">
+        <div class="search-panel">
+            <div class="search-item">
+                <label for="departure-trigger">출발역</label>
+                <button id="departure-trigger" class="station-trigger" type="button" data-target="departure">서울</button>
+            </div>
+
+            <button id="swap-btn" class="swap-btn" type="button" aria-label="출발역 도착역 교체">↻</button>
+
+            <div class="search-item">
+                <label for="arrival-trigger">도착역</label>
+                <button id="arrival-trigger" class="station-trigger" type="button" data-target="arrival">부산</button>
+            </div>
+
+            <div class="search-item">
+                <label for="departure-datetime">출발일</label>
+                <input id="departure-datetime" type="datetime-local" />
+            </div>
+
+            <div class="search-item">
+                <label for="passengers">인원</label>
+                <select id="passengers">
+                    <option value="1">총 1명</option>
+                    <option value="2">총 2명</option>
+                    <option value="3">총 3명</option>
+                    <option value="4">총 4명</option>
+                </select>
+            </div>
+
+            <button id="search-btn" class="search-btn" type="button">열차조회</button>
+        </div>
+    </section>
+</main>
+
+<div id="station-modal" class="station-modal" role="dialog" aria-modal="true" aria-labelledby="station-modal-title" hidden>
+    <div class="station-modal-backdrop" data-close="true"></div>
+    <div class="station-modal-panel">
+        <div class="station-modal-header">
+            <h2 id="station-modal-title">기차역 조회</h2>
+            <button id="station-modal-close" class="station-modal-close" type="button" aria-label="닫기">✕</button>
+        </div>
+        <input id="station-search" class="station-search" type="text" placeholder="기차역 검색" autocomplete="off" />
+        <div id="station-list" class="station-list"></div>
+    </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

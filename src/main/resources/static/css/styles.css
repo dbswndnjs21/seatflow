@@ -1,0 +1,260 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --white: #ffffff;
+    --blue: #0f58aa;
+    --cyan: #1d93bf;
+    --teal: #1db4aa;
+    --text: #1f2937;
+}
+
+body {
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    color: var(--text);
+    background: #f2f4f8;
+}
+
+.hero-page {
+    position: relative;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.18)), url('/images/korail-hero-ktx.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 16px clamp(18px, 4vw, 48px) 36px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.top-right-tools {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lang-btn {
+    border: 0;
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--white);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    backdrop-filter: blur(2px);
+}
+
+.search-wrap {
+    width: min(1380px, 100%);
+    margin: 0 auto;
+    align-self: flex-end;
+}
+
+.search-panel {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 54px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr 1.6fr 0.9fr auto;
+    gap: 16px;
+    align-items: center;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
+}
+
+.search-item {
+    display: grid;
+    gap: 6px;
+}
+
+.search-item label {
+    font-size: 17px;
+    font-weight: 700;
+    color: #4b5563;
+}
+
+.search-item select,
+.search-item input {
+    border: 0;
+    background: transparent;
+    font-size: clamp(26px, 2.2vw, 42px);
+    font-weight: 800;
+    color: #111827;
+    outline: none;
+}
+
+.station-trigger {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    text-align: left;
+    font-size: clamp(26px, 2.2vw, 42px);
+    font-weight: 800;
+    color: #111827;
+    cursor: pointer;
+}
+
+.search-item input {
+    font-size: clamp(19px, 1.6vw, 28px);
+    font-weight: 700;
+}
+
+.swap-btn {
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 999px;
+    background: #eef0f3;
+    font-size: 24px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.search-btn {
+    border: 0;
+    border-radius: 42px;
+    background: #0f58aa;
+    color: var(--white);
+    font-size: 29px;
+    font-weight: 800;
+    padding: 20px 34px;
+    cursor: pointer;
+}
+
+.station-modal[hidden] {
+    display: none;
+}
+
+.station-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.station-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.station-modal-panel {
+    position: relative;
+    width: min(560px, 100%);
+    max-height: 80vh;
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px;
+    display: grid;
+    gap: 12px;
+    z-index: 1;
+}
+
+.station-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.station-modal-header h2 {
+    font-size: 22px;
+}
+
+.station-modal-close {
+    border: 0;
+    background: #eef0f3;
+    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.station-search {
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 16px;
+    outline: none;
+}
+
+.station-search:focus {
+    border-color: var(--blue);
+}
+
+.station-list {
+    overflow: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.station-item-btn {
+    border: 1px solid #d1d5db;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.station-item-btn:hover {
+    background: #eaf2ff;
+    border-color: #93c5fd;
+    color: #0f58aa;
+}
+
+.station-empty {
+    padding: 10px 12px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+    .search-panel {
+        grid-template-columns: 1fr 70px 1fr;
+        border-radius: 26px;
+    }
+
+    .search-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 720px) {
+    .search-panel {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .search-item select,
+    .search-item input {
+        font-size: 24px;
+    }
+
+    .station-trigger {
+        font-size: 24px;
+    }
+
+    .search-item input {
+        font-size: 18px;
+    }
+
+    .swap-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .search-btn {
+        font-size: 20px;
+        padding: 15px 20px;
+    }
+}
