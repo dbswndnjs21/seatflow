@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>코레일 메인</title>
+    <title>seatFlow 메인</title>
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
 <main class="hero-page">
+    <div id="auth-links" class="auth-links">
+        <a href="/login.html" class="auth-link auth-link-login">로그인</a>
+        <a href="/signup.html" class="auth-link auth-link-signup">회원가입</a>
+    </div>
+    <div id="user-greeting" class="user-greeting" hidden>
+        <strong id="user-name"></strong>님, 반갑습니다.
+    </div>
+
     <section class="search-wrap" aria-label="열차 조회">
         <div class="search-panel">
             <div class="search-item">

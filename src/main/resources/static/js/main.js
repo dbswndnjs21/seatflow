@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const stationList = document.getElementById('station-list');
     const stationModalClose = document.getElementById('station-modal-close');
     const stationBackdrop = stationModal.querySelector('[data-close="true"]');
+    const authLinks = document.getElementById('auth-links');
+    const userGreeting = document.getElementById('user-greeting');
+    const userName = document.getElementById('user-name');
 
     let activeTarget = 'departure';
     let searchRequestSeq = 0;
@@ -39,6 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const data = await response.json();
         return data.map((item) => item.name);
+    };
+
+    const loadMe = async () => {
+        try {
+            const response = await fetch('/api/auth/me');
+            if (!response.ok) {
+                return;
+            }
+            const me = await response.json();
+            if (authLinks) {
+                authLinks.hidden = true;
+            }
+            if (userGreeting && userName) {
+                userName.textContent = me.name || me.loginId;
+                userGreeting.hidden = false;
+            }
+        } catch (error) {
+            // ignore
+        }
     };
 
     const openStationModal = async (target) => {
@@ -112,4 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = `열차 조회\n출발: ${departure.textContent}\n도착: ${arrival.textContent}\n출발일: ${datetime.value.replace('T', ' ')}\n인원: ${passengers.options[passengers.selectedIndex].text}`;
         alert(message);
     });
+
+    loadMe();
 });
