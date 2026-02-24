@@ -15,16 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    try {
-        const response = await fetch(`/api/train-runs/${runId}/seats`);
-        if (!response.ok) {
-            throw new Error(`seat api failed: ${response.status}`);
-        }
-        const seats = await response.json();
-        renderSeats(seats);
-    } catch (error) {
-        seatContainer.innerHTML = '<div class="empty">좌석 정보를 불러오지 못했습니다.</div>';
-    }
+    await loadSeats();
 
     function renderSeats(seats) {
         if (!Array.isArray(seats) || seats.length === 0) {
@@ -70,4 +61,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (value === 'RESERVED') return 'reserved';
         return 'reserved';
     }
+
+    async function loadSeats() {
+        try {
+            const response = await fetch(`/api/train-runs/${runId}/seats`);
+            if (!response.ok) {
+                throw new Error(`seat api failed: ${response.status}`);
+            }
+            const seats = await response.json();
+            renderSeats(seats);
+        } catch (error) {
+            seatContainer.innerHTML = '<div class="empty">좌석 정보를 불러오지 못했습니다.</div>';
+        }
+    }
+
+    seatContainer.addEventListener('click', async (event) => {
+        const target = event.target.closest('.seat-btn.available');
+        if (!target) {
+            return;
+        }
+
+        const seatInventoryId = target.dataset.seatInventoryId;
+        if (!seatInventoryId) {
+            return;
+        }
+
+        target.disabled = true;
+
+        try {
+            const response = await fetch(`/api/seats/${seatInventoryId}/hold`, { method: 'POST' });
+            const payload = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                alert(payload.message || payload.detail || '좌석 선점에 실패했습니다.');
+                await loadSeats();
+                return;
+            }
+
+            alert(`좌석 선점 완료 (만료: ${payload.holdExpiresAt})`);
+            await loadSeats();
+        } catch (error) {
+            alert('좌석 선점 중 오류가 발생했습니다.');
+            await loadSeats();
+        }
+    });
 });
